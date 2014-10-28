@@ -1,8 +1,9 @@
-import ipdb
+#import ipdb
 import re
 
 from scrapy.exceptions import IgnoreRequest
-from scrapy import log
+#from scrapy import log
+
 
 class PeoplePattern(object):
     patterns = [
