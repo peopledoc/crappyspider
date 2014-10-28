@@ -1,0 +1,23 @@
+{
+    "patterns": [
+        "/manager/\\?",
+        "/manager/article/\\?",
+        "/manager/article/[0-9]+",
+        "/manager/request/[0-9]+",
+        "/manager/requests/\\?",
+        "/manager/auto-answer/\\?",
+        "/manager/requests/mine/\\?",
+        "/manager/employee/.+",
+        "/manager/category/.+",
+        "/administration/form/\\?",
+        "/administration/form/[0-9]+",
+        "/administration/manager/[0-9]+",
+        "/administration/role/[0-9]+",
+        "/administration/category/.+"
+    ],
+    "excluded_patterns": [
+        "/sudo/",
+        "/unsudo/",
+        "/logout/"
+    ]
+}

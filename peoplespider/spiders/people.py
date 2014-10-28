@@ -62,15 +62,13 @@ class PeopleAskManager(Spider):
         log.msg('Login success', level=log.INFO)
 
         for url in sel.css('a::attr(href)').extract():
-            if url != '/logout/':
-                yield Request(url='http://peopleask.local' + url,
-                              callback=self.parse_page)
+            yield Request(url='http://peopleask.local' + url,
+                          callback=self.parse_page)
 
     def parse_page(self, response):
+        log.msg('Status code page {status_code} for {url}'.format(
+                    status_code=response.status, url=response.url), level=log.INFO)
         sel = Selector(response)
         for url in sel.css('a::attr(href)').extract():
-            if url != '/logout/':
-                log.msg('Status code page {status_code} for {url}'.format(
-                    status_code=response.status, url=url), level=log.INFO)
-                yield Request(url='http://peopleask.local' + url,
-                              callback=self.parse_page)
+            yield Request(url='http://peopleask.local' + url,
+                          callback=self.parse_page)
