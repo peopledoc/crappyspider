@@ -4,7 +4,7 @@ import re
 from scrapy.exceptions import IgnoreRequest
 
 
-class PeoplePattern(object):
+class CrappyPattern(object):
     visited_patterns = []
 
     def process_request(self, request, spider):
