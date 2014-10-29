@@ -26,7 +26,12 @@ class CrapySpider(Spider):
             response, formdata={
                 'email': self.config['email'],
                 'password': self.config['password']},
-            callback=self.after_login)]
+            callback=self.after_login,
+            errback=self.login_error)]
+
+    def login_error(self, response):
+        log.msg('Can\'t reach targeted page! (login ok)', level=log.ERROR)
+        return
 
     def after_login(self, response):
         # check login succeed before going on
