@@ -67,7 +67,7 @@ class PeopleAskManager(Spider):
 
     def parse_page(self, response):
         log.msg('Status code page {status_code} for {url}'.format(
-                    status_code=response.status, url=response.url), level=log.INFO)
+            status_code=response.status, url=response.url), level=log.INFO)
         sel = Selector(response)
         for url in sel.css('a::attr(href)').extract():
             yield Request(url='http://peopleask.local' + url,

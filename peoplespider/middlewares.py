@@ -4,6 +4,7 @@ import json
 
 from scrapy.exceptions import IgnoreRequest
 
+
 class PeoplePattern(object):
 
     visited_patterns = []
@@ -17,7 +18,6 @@ class PeoplePattern(object):
 
     def process_request(self, request, spider):
         for pattern in self.patterns:
-            # print(pattern, request.url, bool(re.search(str(pattern), request.url)))
             if bool(re.search(str(pattern), request.url)):
                 if pattern in self.visited_patterns:
                     raise IgnoreRequest()
