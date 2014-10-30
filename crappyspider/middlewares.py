@@ -8,7 +8,10 @@ class CrappyPattern(object):
     visited_patterns = []
 
     def process_request(self, request, spider):
-        for pattern in spider.config['patterns']:
+        patterns = spider.config.get('patterns', [])
+        excluded_patterns = spider.config.get('excluded_patterns', [])
+
+        for pattern in patterns:
             if bool(re.search(str(pattern), request.url)):
                 if pattern in self.visited_patterns:
                     raise IgnoreRequest()
@@ -16,6 +19,6 @@ class CrappyPattern(object):
                     self.visited_patterns.append(pattern)
                     break
 
-        for excluded_pattern in spider.config['excluded_patterns']:
+        for excluded_pattern in excluded_patterns:
             if bool(re.search(str(excluded_pattern), request.url)):
                 raise IgnoreRequest()
