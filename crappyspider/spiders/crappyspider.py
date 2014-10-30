@@ -44,16 +44,8 @@ class CrappySpider(Spider):
 
         # continue scraping with authenticated session
         log.msg('Login success', level=log.INFO)
-        url_prefix = urlparse.urlparse(response.url)
 
-        for url in sel.css('a::attr(href)').extract():
-            try:
-                yield Request(url, callback=self.parse_page)
-            except ValueError:
-                url_final = '{scheme}://{netloc}{path}'.format(
-                    scheme=url_prefix.scheme, netloc=url_prefix.netloc,
-                    path=url)
-                yield Request(url_final, callback=self.parse_page)
+        return self.parse_page(response)
 
     def parse_page(self, response):
         log.msg('Status code page {status_code} for {url}'.format(
