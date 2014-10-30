@@ -16,6 +16,9 @@ class CrappySpider(Spider):
         if rule:
             with open(rule) as fil:
                 data = json.load(fil)
+        else:
+            raise ValueError('The rule option is required, for example:'
+                             ' scrapy crawl crappyspider -a rule=my_rule.json')
 
         self.config = data
         self.start_urls = data['start_urls']
