@@ -23,11 +23,8 @@ class CrappySpider(Spider):
 
     def parse(self, response):
         return [FormRequest.from_response(
-            response, formdata={
-                'email': self.config['email'],
-                'password': self.config['password']},
-            callback=self.after_login,
-            errback=self.login_error)]
+            response, formdata=self.config['credential'],
+            callback=self.after_login, errback=self.login_error)]
 
     def login_error(self, response):
         log.msg('Can\'t reach targeted page! (login ok)', level=log.ERROR)
