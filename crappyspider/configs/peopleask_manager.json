@@ -22,7 +22,9 @@
         "/unsudo/",
         "/logout/"
     ],
-    "email": "admin",
-    "password": "admin1234",
+    "credential": {
+        "email": "admin",
+        "password": "admin1234"
+    },
     "login_error_selector": ".errorlist"
 }
