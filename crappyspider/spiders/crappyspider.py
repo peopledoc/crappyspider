@@ -22,9 +22,14 @@ class CrappySpider(Spider):
         self.allowed_domains = data['allowed_domains']
 
     def parse(self, response):
-        return [FormRequest.from_response(
-            response, formdata=self.config['credential'],
-            callback=self.after_login, errback=self.login_error)]
+        credential = self.config.get('credential', None)
+
+        if credential:
+            return [FormRequest.from_response(
+                response, formdata=self.config['credential'],
+                callback=self.after_login, errback=self.login_error)]
+
+        return Request(response.url, callback=self.parse_page)
 
     def login_error(self, response):
         log.msg('Can\'t reach targeted page! (login ok)', level=log.ERROR)
