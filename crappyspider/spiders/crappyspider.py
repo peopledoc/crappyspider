@@ -1,6 +1,5 @@
 import json
 import urlparse
-import ipdb
 
 from scrapy.spider import Spider
 from scrapy.http import FormRequest, Request
@@ -40,6 +39,7 @@ class CrappySpider(Spider):
         if sel.css(self.config['login_error_selector']):
             log.msg('Login failed', level=log.ERROR)
             return
+
         # continue scraping with authenticated session
         log.msg('Login success', level=log.INFO)
         url_prefix = urlparse.urlparse(response.url)
