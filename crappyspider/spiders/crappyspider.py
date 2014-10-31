@@ -10,12 +10,16 @@ from scrapy import log
 class CrappySpider(Spider):
     name = 'crappyspider'
 
-    def __init__(self, rule=None):
+    def __init__(self, config=None):
         super(CrappySpider, self).__init__()
 
-        if rule:
-            with open(rule) as fil:
+        if config:
+            with open(config) as fil:
                 data = json.load(fil)
+        else:
+            raise ValueError('The config option is required, for example:'
+                             ' scrapy crawl crappyspider -a '
+                             ' config=my_rule.json')
 
         self.config = data
         self.start_urls = data['start_urls']
@@ -32,7 +36,7 @@ class CrappySpider(Spider):
         return Request(response.url, callback=self.parse_page)
 
     def login_error(self, response):
-        log.msg('Can\'t reach targeted page! (login ok)', level=log.ERROR)
+        log.msg("Can't reach targeted page! (login ok)", level=log.ERROR)
         return
 
     def after_login(self, response):
