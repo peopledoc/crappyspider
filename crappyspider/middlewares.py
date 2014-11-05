@@ -16,6 +16,7 @@ class CrappyPattern(object):
                     raise IgnoreRequest()
                 else:
                     self.visited_patterns.append(pattern)
+                    spider._url_seen.append({'url': request.url})
                     break
 
         for excluded_pattern in excluded_patterns:
