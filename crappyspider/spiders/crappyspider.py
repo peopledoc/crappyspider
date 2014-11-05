@@ -1,10 +1,13 @@
 import json
 import urlparse
+import os
 
 from scrapy.spider import Spider
 from scrapy.http import FormRequest, Request
 from scrapy.selector import Selector
+from scrapy.xlib.pydispatch import dispatcher
 from scrapy import log
+from scrapy import signals
 
 
 class CrappySpider(Spider):
@@ -24,6 +27,9 @@ class CrappySpider(Spider):
         self.config = data
         self.start_urls = data['start_urls']
         self.allowed_domains = data['allowed_domains']
+        self._url_seen = []
+
+        dispatcher.connect(self.engine_stopped, signals.engine_stopped)
 
     def parse(self, response):
         credential = self.config.get('credential', None)
@@ -65,3 +71,9 @@ class CrappySpider(Spider):
                     scheme=url_prefix.scheme, netloc=url_prefix.netloc,
                     path=url)
                 yield Request(url_final, callback=self.parse_page)
+
+    def engine_stopped(self):
+        """docstring for spider_closed"""
+        with open('{current_directory}/url_seen.json'.format(
+                  current_directory=os.getcwd()), 'w') as outfile:
+            json.dump(self._url_seen, outfile)
