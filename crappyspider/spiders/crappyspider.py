@@ -32,6 +32,7 @@ class CrappySpider(Spider):
         dispatcher.connect(self.engine_stopped, signals.engine_stopped)
 
     def parse(self, response):
+        """Check if need login."""
         credential = self.config.get('credential', None)
 
         if credential:
@@ -42,10 +43,12 @@ class CrappySpider(Spider):
         return Request(response.url, callback=self.parse_page)
 
     def login_error(self, response):
+        """To display a message if the login failed."""
         log.msg("Can't reach targeted page! (login ok)", level=log.ERROR)
         return
 
     def after_login(self, response):
+        """After the login check the credential."""
         # check login succeed before going on
         sel = Selector(response)
         if sel.css(self.config['login_error_selector']):
@@ -58,6 +61,7 @@ class CrappySpider(Spider):
         return self.parse_page(response)
 
     def parse_page(self, response):
+        """Parse the page."""
         log.msg('Status code page {status_code} for {url}'.format(
             status_code=response.status, url=response.url), level=log.INFO)
         sel = Selector(response)
