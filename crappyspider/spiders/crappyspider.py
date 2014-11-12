@@ -13,17 +13,22 @@ from scrapy import signals
 class CrappySpider(Spider):
     name = 'crappyspider'
 
-    def __init__(self, config=None):
+    def __init__(self, config=None, output_format='json'):
         super(CrappySpider, self).__init__()
 
-        if config:
-            with open(config) as fil:
-                data = json.load(fil)
-        else:
+        if output_format not in ('json', 'yaml'):
+            raise ValueError('Format {extension} is not supported'.format(
+                extension=output_format))
+
+        if not config:
             raise ValueError('The config option is required, for example:'
                              ' scrapy crawl crappyspider -a '
                              ' config=my_rule.json')
 
+        with open(config) as fil:
+            data = json.load(fil)
+
+        self.output_format = output_format
         self.config = data
         self.start_urls = data['start_urls']
         self.allowed_domains = data['allowed_domains']
@@ -73,7 +78,14 @@ class CrappySpider(Spider):
                 yield Request(url_final, callback=self.parse_page)
 
     def engine_stopped(self):
-        """docstring for spider_closed"""
-        with open('{current_directory}/url_seen.json'.format(
-                  current_directory=os.getcwd()), 'w') as outfile:
-            json.dump(self._url_seen, outfile)
+        """Call in the end, to generate a report with all visited url."""
+        if self.output_format == 'json':
+            with open('{current_directory}/url_seen.json'.format(
+                      current_directory=os.getcwd()), 'w') as outfile:
+                json.dump(self._url_seen, outfile)
+        else:
+            import yaml
+
+            with open('{current_directory}/url_seen.yaml'.format(
+                      current_directory=os.getcwd()), 'w') as outfile:
+                yaml.dump(self._url_seen, outfile)
