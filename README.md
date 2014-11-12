@@ -1,10 +1,11 @@
-INSTALL
-==
+# Introduction
 
-First you need to install scrapy [http://scrapy.org/]:
-`pip install scrapy`
+Crappyspider is a generic cralwer. The goal is to stay kiss and simple, test
+easily your site. A report is generate with all visited url and can be used by
+other tool to make functional test.
 
-USAGE
-==
+# USAGE
 
-Then you can run a spider: `scrapy crawl peopleask_manager`
+Then you can run a spider:
+
+    scrapy crawl crappyspider -a config=my_rule.json
