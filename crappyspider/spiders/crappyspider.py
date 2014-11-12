@@ -17,8 +17,9 @@ class CrappySpider(Spider):
         super(CrappySpider, self).__init__()
 
         if output_format not in ('json', 'yaml'):
-            raise ValueError('Format {extension} is not supported'.format(
-                extension=output_format))
+            raise ValueError('Format {extension} is not supported'
+                             '(json or yaml)'.format(
+                                 extension=output_format))
 
         if not config:
             raise ValueError('The config option is required, for example:'
