@@ -14,7 +14,8 @@ class CrappySpider(Spider):
     name = 'crappyspider'
 
     def __init__(self, config=None, output_format='json',
-                 output_filename='output'):
+                 output_filename='output', start_urls=None,
+                 allowed_domains=None):
         super(CrappySpider, self).__init__()
 
         if output_format not in ('json', 'yaml'):
@@ -37,8 +38,10 @@ class CrappySpider(Spider):
         self.output_format = output_format
         self.output_filename = output_filename
         self.config = data
-        self.start_urls = data['start_urls']
-        self.allowed_domains = data['allowed_domains']
+        self.start_urls = start_urls.split() \
+            if start_urls else data['start_urls']
+        self.allowed_domains = allowed_domains.split() \
+            if allowed_domains else data['allowed_domains']
         self._url_seen = []
 
         dispatcher.connect(self.engine_stopped, signals.engine_stopped)
