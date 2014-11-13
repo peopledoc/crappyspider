@@ -23,17 +23,23 @@ class CrappySpider(Spider):
                              '(json or yaml)'.format(
                                  extension=output_format))
 
-        if not config:
-            raise ValueError('The config option is required, for example:'
+        if not config and (not start_urls or not allowed_domains):
+            raise ValueError('Need a start_urls and allowed_domains can be'
+                             ' configured in the config file or using'
+                             ' command line. For example:'
                              ' scrapy crawl crappyspider -a '
-                             ' config=my_rule.json')
+                             ' start_urls=http://test.com'
+                             ' -a allowed_domains=test.com')
 
         if output_filename == 'output':
             output_filename = '{current_directory}/output.{ext}'.format(
                 current_directory=os.getcwd(), ext=output_format)
 
-        with open(config) as fil:
-            data = json.load(fil)
+        if config:
+            with open(config) as fil:
+                data = json.load(fil)
+        else:
+            data = {}
 
         self.output_format = output_format
         self.output_filename = output_filename
