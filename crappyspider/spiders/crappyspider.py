@@ -26,7 +26,7 @@ class CrappySpider(Spider):
         if not config and (not start_urls or not allowed_domains):
             raise ValueError('Requires the start_urls and allowed_domains '
                              ' parameters which can be'
-                             ' configured in the config file or using'
+                             ' configured in the config file or using the'
                              ' command line. For example:'
                              ' scrapy crawl crappyspider -a '
                              ' start_urls=http://test.com'
