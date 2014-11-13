@@ -8,9 +8,9 @@ Welcome to Crappyspider's documentation!
 
 Contents:
 
-* source: https://github.com/hobbestigrou/Pylocwolowitz
-* ticketing: https://github.com/hobbestigrou/Pylocwolowitz/issues
-* documentation: http://pylocwolowitz.readthedocs.org/en/latest/
+* source: https://github.com/novapost/crappyspider
+* ticketing: https://github.com/novapost/crappyspider/issues
+* documentation: http://crappyspider.readthedocs.org/en/latest/
 
 
 .. toctree::
