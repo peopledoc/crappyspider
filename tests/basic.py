@@ -32,3 +32,13 @@ class CrappySpiderTestCase(unittest.TestCase):
         allowed_domains = 'test.com'
         self.failUnlessRaises(ValueError, CrappySpider, config, output_format,
                               output_filename, start_urls, allowed_domains)
+
+    def test_unsupported_format(self):
+        """Test with unsupported format"""
+        config = None
+        output_format = 'format',
+        output_filename = 'output'
+        start_urls = 'http://test.com'
+        allowed_domains = 'test.com'
+        self.failUnlessRaises(ValueError, CrappySpider, config, output_format,
+                              output_filename, start_urls, allowed_domains)
