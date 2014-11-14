@@ -1,2 +1,2 @@
 test:
-	nosetests --nologcapture --all-modules tests
+	nosetests --nologcapture --all-modules -s tests
