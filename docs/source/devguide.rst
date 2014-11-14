@@ -1,4 +1,4 @@
-How to contrib
-==============
+How to contribute
+=================
 
 .. include:: ../../CONTRIBUTING.rst
