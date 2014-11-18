@@ -58,9 +58,18 @@ class CrappySpider(Spider):
         credential = self.config.get('credential', None)
 
         if credential:
+            if isinstance(credential, dict):
+                return [FormRequest.from_response(
+                    response, formdata=self.config['credential'],
+                    callback=self.after_login, errback=self.login_error)]
+
+            data = {}
+            for field in credential:
+                data[field] = os.environ['CRAPPYSPIDER_' + field.upper()]
+
             return [FormRequest.from_response(
-                response, formdata=self.config['credential'],
-                callback=self.after_login, errback=self.login_error)]
+                response, formdata=data, callback=self.after_login,
+                errback=self.login_error)]
 
         return Request(response.url, callback=self.parse_page)
 
