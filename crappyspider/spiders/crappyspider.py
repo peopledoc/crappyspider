@@ -63,6 +63,7 @@ class CrappySpider(Spider):
                     response, formdata=self.config['credential'],
                     callback=self.after_login, errback=self.login_error)]
 
+            # Get the crendetial from environnement
             data = {}
             for field in credential:
                 data[field] = os.environ['CRAPPYSPIDER_' + field.upper()]
