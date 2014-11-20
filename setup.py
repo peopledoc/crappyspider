@@ -1,4 +1,7 @@
-from distutils.core import setup
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
 
 setup(
     name="crappyspider",
@@ -7,7 +10,7 @@ setup(
     install_requires=['scrapy'],
     description="Test your site.",
     author="Peopledoc",
-    author_email="support@people-doc.com",
+    author_email="hobbestigrou@erakis.eu",
     url="http://crappyspider.readthedocs.org/en/latest/",
     download_url="",
     keywords=["crawler", "scrapy"],
@@ -17,17 +20,17 @@ setup(
         "Development Status :: 4 - Beta",
         "Environment :: Other Environment",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)",
+        "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
         "Topic :: Software Development :: Libraries :: Python Modules",
-        "Topic :: Text Processing :: Linguistic",
+        "Topic :: Test :: Crawler",
         ],
     long_description="""\
 Crappyspider
 ------------
 
-Crappyspider is a generic crawler. The goal is to test easily your site and see
-see if you have error.
+Crappyspider is a generic crawler. The goal is to test easily your site see
+if you have error.
 
 
 This version requires Python 2.7 or later.
