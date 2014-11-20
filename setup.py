@@ -29,8 +29,8 @@ setup(
 Crappyspider
 ------------
 
-Crappyspider is a generic crawler. The goal is to test easily your site see
-if you have error.
+Crappyspider is a generic crawler. The goal is to easily test your site for
+HTTP errors and more.
 
 
 This version requires Python 2.7 or later.
