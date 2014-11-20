@@ -6,7 +6,7 @@ except ImportError:
 setup(
     name="crappyspider",
     packages=["crappyspider"],
-    version='0.2.dev0',
+    version='0.2',
     install_requires=['scrapy'],
     description="Test your site.",
     author="Peopledoc",
@@ -23,7 +23,6 @@ setup(
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
         "Topic :: Software Development :: Libraries :: Python Modules",
-        "Topic :: Test :: Crawler",
         ],
     long_description="""\
 Crappyspider
