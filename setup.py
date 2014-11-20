@@ -6,7 +6,7 @@ except ImportError:
 setup(
     name="crappyspider",
     packages=["crappyspider"],
-    version='0.1.dev0',
+    version='0.1',
     install_requires=['scrapy'],
     description="Test your site.",
     author="Peopledoc",
