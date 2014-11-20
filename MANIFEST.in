@@ -1,0 +1,6 @@
+recursive-include crappyspider *
+recursive-include tests *
+recursive-include docs *
+include README.md CHANGELOG CONTRIBUTING.rst
+global-exclude *.pyc
+global-exclude *.pyo
