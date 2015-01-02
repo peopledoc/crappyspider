@@ -7,5 +7,6 @@
 
 from scrapy import Item
 
+
 class CrappyItem(Item):
     pass
