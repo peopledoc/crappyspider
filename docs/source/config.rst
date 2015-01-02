@@ -45,6 +45,37 @@ Credential
 The credential hash is optional since it is used for sites requiring login.
 The underlying hashes are used as names for the login form inputs, so you might have to change them.
 
+Example:
+
+.. code-block:: json
+
+    {
+        "credential": {
+            "email": "myemail",
+            "password": "mypassword"
+        },
+    }
+
+There's another credential scheme, take a list, with the name of the field.
+
+Example:
+
+.. code-block:: json
+
+    {
+        "credential": ["email", "password"]
+    }
+
+Then add in your environnement two variables.
+
+Example:
+
+.. code-block:: bash
+
+    export CRAPPYSPIDER_EMAIL=test@test.com
+    export CRAPPYSPIDER_PASSWORD=my_password
+
+
 Login error selector
 --------------------
 The selector where the crawler should look for errors after a login attempt.
