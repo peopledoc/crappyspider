@@ -3,10 +3,11 @@ Changelog
 Revision history for crappyspider.
 
 
-0.3 (unreleased)
+0.3 (2015-02-16)
 ----------------
 
-- Nothing changed yet.
+- Support of environment variable to store credentials (#28).
+- Explain how to install the project (#30).
 
 
 0.2 (2014-11-20)
