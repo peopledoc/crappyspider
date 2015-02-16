@@ -20,4 +20,4 @@ Then you can run a spider:
 
     scrapy crawl crappyspider -a config=my_rule.json
 
-See http://crappyspider.readthedocs.org/en/latest/ to have the documentation.
+See http://crappyspider.readthedocs.org/en/latest/ for further information.
